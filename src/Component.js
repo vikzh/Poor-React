@@ -5,14 +5,17 @@ export default class {
     return null;
   }
 
-  constructor(properties, ) {
+  constructor(properties, updater) {
     this.properties = properties;
     this.state = this.getInitialState();
+    this.updater = updater;
   }
 
   setState(newState) {
     _.forIn(newState, (value, key) => {
       this.state[key] = value;
-    })
+    });
+
+    this.updater.update(this.render());
   }
 }
